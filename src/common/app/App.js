@@ -1,10 +1,11 @@
+import NavBar from "@/components/NavBar/NavBar";
 import React from "react";
 import Routes from "./routes";
 
 function App() {
   return (
     <div className="app">
-      <h3>Welcome</h3>
+      <NavBar />
       <Routes />
     </div>
   );
