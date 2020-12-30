@@ -5,46 +5,45 @@
   font-size: inherit;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-body,
-a,
-ul,
-li input,
-textarea {
-  margin: 0;
-  padding: 0;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-size: 16px;
-  color: #000;
-  list-style: none;
-  padding: 0;
-  list-style: none;
-  outline: none;
-  text-decoration: none;
-}
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6,
+// body,
+// a,
+// ul,
+// li input,
+// textarea {
+//   margin: 0;
+//   padding: 0;
+//   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+//   font-size: 16px;
+//   color: #000;
+//   list-style: none;
+//   padding: 0;
+//   list-style: none;
+//   outline: none;
+//   text-decoration: none;
+// }
 
+// a,
+// button {
+//   cursor: pointer;
+// }
+
+// button {
+//   background: none;
+//   border: none;
+//   outline: none;
+// }
+
+// .root {
+//   height: 100%;
+// }
 html,
 body {
   height: 100%;
   overflow-x: hidden;
-}
-
-a,
-button {
-  cursor: pointer;
-}
-
-button {
-  background: none;
-  border: none;
-  outline: none;
-}
-
-.root {
-  height: 100%;
 }

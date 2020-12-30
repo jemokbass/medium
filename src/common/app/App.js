@@ -1,6 +1,6 @@
-import NavBar from "@/components/NavBar/NavBar";
-import React from "react";
-import Routes from "./routes";
+import NavBar from '@/components/NavBar/NavBar';
+import React from 'react';
+import Routes from './routes';
 
 function App() {
   return (
