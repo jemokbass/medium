@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import useFetch from '@/hooks/useFetch';
+import useLocalStorage from '@/hooks/useLocalStorage';
+import { CurrentUserContext } from '@/context/currentUser';
+import ErrorMessages from '@/components/ErrorMessages/ErrorMessages';
 
 const AuthenticationPage = props => {
   const isLogin = props.match.path === '/login',
@@ -8,12 +11,14 @@ const AuthenticationPage = props => {
     descriptionLink = isLogin ? '/register' : '/login',
     descriptionText = isLogin ? 'Need an account?' : 'Have an account?',
     apiUrl = isLogin ? '/users/login' : '/users';
+
   const [email, setEmail] = useState(''),
     [password, setPassword] = useState(''),
     [{ response, isLoading, error }, doFetch] = useFetch(apiUrl),
-    [username, setUsername] = useState('');
-
-  console.log('myau', response, isLoading, error);
+    [username, setUsername] = useState(''),
+    [isSuccessfulSubmit, setSuccessfulSubmit] = useState(''),
+    [, setToken] = useLocalStorage('token'),
+    [, setCurrentUserState] = useContext(CurrentUserContext);
 
   const onSubmitHandler = event => {
     event.preventDefault();
@@ -26,6 +31,24 @@ const AuthenticationPage = props => {
     });
   };
 
+  useEffect(() => {
+    if (!response) {
+      return;
+    }
+    setToken(response.user.token);
+    setSuccessfulSubmit(true);
+    setCurrentUserState(state => ({
+      ...state,
+      isLoggedIn: true,
+      isLoading: false,
+      currentUser: response.user,
+    }));
+  }, [response, setToken, setCurrentUserState]);
+
+  if (isSuccessfulSubmit) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div className="auth-page">
       <div className="container page">
@@ -36,6 +59,7 @@ const AuthenticationPage = props => {
               <Link to={descriptionLink}>{descriptionText}</Link>
             </p>
             <form onSubmit={onSubmitHandler}>
+              {error && <ErrorMessages backendErrors={error.errors} />}
               {!isLogin && (
                 <div className="form-group">
                   <input
@@ -43,7 +67,7 @@ const AuthenticationPage = props => {
                     className="form-control form-control-lg"
                     placeholder="Username"
                     value={username}
-                    onChange={e => setUsername(e.target.value)}
+                    onChange={e => setUsername(e.target.value.trim())}
                   />
                 </div>
               )}
@@ -62,7 +86,7 @@ const AuthenticationPage = props => {
                   className="form-control form-control-lg"
                   placeholder="Password"
                   value={password}
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={e => setPassword(e.target.value.trim())}
                 />
               </div>
               <div className="form-group">
