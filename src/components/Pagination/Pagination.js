@@ -1,5 +1,4 @@
 import React from 'react';
-import useFetch from '@/hooks/useFetch';
 import { range } from '@/common/utils/utils';
 import PaginationItem from './blocks/PaginationItem';
 
@@ -10,7 +9,7 @@ const Pagination = ({ total, limit, url, currentPage }) => {
     <ul className="pagination">
       {pages.map(page => (
         <PaginationItem
-          key={{}}
+          key={page}
           page={page}
           currentPage={currentPage}
           url={url}
