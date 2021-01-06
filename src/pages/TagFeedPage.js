@@ -9,11 +9,13 @@ import Loader from '@/components/Loader/Loader';
 import Error from '@/components/Error/Error';
 import FeedTabs from '@/components/FeedTabs/FeedTabs';
 
-const GlobalFeedPage = ({ location, match }) => {
+const TagFeedPage = ({ location, match }) => {
   const { offset, currentPage } = getPaginator(location.search),
+    tagName = match.params.slug,
     stringifyParams = stringify({
       limit,
       offset,
+      tag: tagName,
     }),
     apiUrl = `/articles?${stringifyParams}`,
     [{ response, isLoading, error }, doFetch] = useFetch(apiUrl),
@@ -21,7 +23,7 @@ const GlobalFeedPage = ({ location, match }) => {
 
   useEffect(() => {
     doFetch();
-  }, [doFetch, currentPage]);
+  }, [doFetch, currentPage, tagName]);
 
   return (
     <div className="home-page">
@@ -34,7 +36,7 @@ const GlobalFeedPage = ({ location, match }) => {
       <div className="container page">
         <div className="row">
           <div className="col-md-9">
-            <FeedTabs />
+            <FeedTabs tagName={tagName} />
             {isLoading && <Loader />}
             {error && <Error />}
             {!isLoading && response && (
@@ -58,4 +60,4 @@ const GlobalFeedPage = ({ location, match }) => {
   );
 };
 
-export default GlobalFeedPage;
+export default TagFeedPage;

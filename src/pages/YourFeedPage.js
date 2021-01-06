@@ -9,13 +9,13 @@ import Loader from '@/components/Loader/Loader';
 import Error from '@/components/Error/Error';
 import FeedTabs from '@/components/FeedTabs/FeedTabs';
 
-const GlobalFeedPage = ({ location, match }) => {
+const YourFeedPage = ({ location, match }) => {
   const { offset, currentPage } = getPaginator(location.search),
     stringifyParams = stringify({
       limit,
       offset,
     }),
-    apiUrl = `/articles?${stringifyParams}`,
+    apiUrl = `/articles/feed?${stringifyParams}`,
     [{ response, isLoading, error }, doFetch] = useFetch(apiUrl),
     url = match.url;
 
@@ -58,4 +58,4 @@ const GlobalFeedPage = ({ location, match }) => {
   );
 };
 
-export default GlobalFeedPage;
+export default YourFeedPage;
