@@ -18,7 +18,7 @@ const AuthenticationPage = props => {
     [username, setUsername] = useState(''),
     [isSuccessfulSubmit, setSuccessfulSubmit] = useState(''),
     [, setToken] = useLocalStorage('token'),
-    [, setCurrentUserState] = useContext(CurrentUserContext);
+    [, dispatch] = useContext(CurrentUserContext);
 
   const onSubmitHandler = event => {
     event.preventDefault();
@@ -37,13 +37,14 @@ const AuthenticationPage = props => {
     }
     setToken(response.user.token);
     setSuccessfulSubmit(true);
-    setCurrentUserState(state => ({
-      ...state,
-      isLoggedIn: true,
-      isLoading: false,
-      currentUser: response.user,
-    }));
-  }, [response, setToken, setCurrentUserState]);
+    dispatch({ type: 'SET_AUTHORIZED', payload: response.user });
+    // setCurrentUserState(state => ({
+    //   ...state,
+    //   isLoggedIn: true,
+    //   isLoading: false,
+    //   currentUser: response.user,
+    // }));
+  }, [response, setToken, dispatch]);
 
   if (isSuccessfulSubmit) {
     return <Redirect to="/" />;

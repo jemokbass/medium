@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import FeedTags from './blocks/FeedTags';
 
 const Feed = ({ articles }) => {
   return (
@@ -21,13 +22,7 @@ const Feed = ({ articles }) => {
             <h2>{article.title}</h2>
             <p>{article.description}</p>
             <span>Read More...</span>
-            <ul className="tag-list">
-              {article.tagList.map(tag => (
-                <li key={tag} className="tag-default tag-pill tag-outline">
-                  {tag}
-                </li>
-              ))}
-            </ul>
+            <FeedTags tags={article.tagList} />
           </Link>
         </div>
       ))}
