@@ -5,14 +5,18 @@ import GlobalFeedPage from '@/pages/GlobalFeedPage';
 import AuthenticationPage from '@/pages/AuthenticationPage';
 import TagFeedPage from '@/pages/TagFeedPage';
 import YourFeedPage from '@/pages/YourFeedPage';
+import CreateArticlePage from '@/pages/CreateArticlePage';
+import EditArticlePage from '@/pages/EditArticlePage.';
 
 export default () => (
   <Switch>
     <Route path="/" exact component={GlobalFeedPage} />
     <Route path="/feed" component={YourFeedPage} />
     <Route path="/tags/:slug" component={TagFeedPage} />
-    <Route path="/articles/:slug" component={ArticlePage} />
+    <Route path="/article/new" component={CreateArticlePage} />
+    <Route path="/articles/:slug/edit" component={EditArticlePage} />
     <Route path="/login" component={AuthenticationPage} />
     <Route path="/register" component={AuthenticationPage} />
+    <Route path="/articles/:slug" component={ArticlePage} />
   </Switch>
 );
