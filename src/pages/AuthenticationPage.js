@@ -38,12 +38,6 @@ const AuthenticationPage = props => {
     setToken(response.user.token);
     setSuccessfulSubmit(true);
     dispatch({ type: 'SET_AUTHORIZED', payload: response.user });
-    // setCurrentUserState(state => ({
-    //   ...state,
-    //   isLoggedIn: true,
-    //   isLoading: false,
-    //   currentUser: response.user,
-    // }));
   }, [response, setToken, dispatch]);
 
   if (isSuccessfulSubmit) {

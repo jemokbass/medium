@@ -6,6 +6,7 @@ import Error from '../Error/Error';
 
 const PopularTags = () => {
   const [{ response, isLoading, error }, doFetch] = useFetch('/tags');
+
   useEffect(() => {
     doFetch();
   }, [doFetch]);

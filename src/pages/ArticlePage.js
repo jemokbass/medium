@@ -31,8 +31,6 @@ const ArticlePage = props => {
     );
   };
 
-  console.log(isAuthor());
-
   const deleteArticle = () => {
     deleteArticleFetch({
       method: 'delete',

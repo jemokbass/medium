@@ -1,5 +1,5 @@
 import useFetch from '@/hooks/useFetch';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const AddToFavorites = ({ isFavorite, favoritesCount, articleSlug }) => {
   const apiUrl = `/articles/${articleSlug}/favorite`,

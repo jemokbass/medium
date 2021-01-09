@@ -24,7 +24,9 @@ const useFetch = url => {
         },
       },
     };
+
     if (!isLoading) return;
+
     axios(baseUrl + url, requestOptions)
       .then(res => {
         setIsLoading(false);
