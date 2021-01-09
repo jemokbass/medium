@@ -22,6 +22,11 @@ const reducer = (state, action) => {
         ...state,
         isLoggedIn: false,
       };
+    case 'LOGOUT':
+      return {
+        ...initialState,
+        isLoggedIn: false,
+      };
     default:
       return state;
   }
@@ -31,11 +36,6 @@ export const CurrentUserContext = createContext();
 
 export const CurrentUserProvider = ({ children }) => {
   const value = useReducer(reducer, initialState);
-  // const [state, setState] = useState({
-  //   isLoading: false,
-  //   isLoggedIn: null,
-  //   currentUser: null,
-  // });
 
   return (
     <CurrentUserContext.Provider value={value}>
